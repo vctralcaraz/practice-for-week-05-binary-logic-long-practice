@@ -4,6 +4,27 @@
 
 const convertToBase16 = element => {
   // Your code here
+
+  if(typeof element === 'number') {  // if element is decimal
+
+    return '0x' + parseInt(element, 10).toString(16);  // return hexadecimal via parseInt function
+
+  } else if(element[1] === 'b') {  // if element is binary
+
+    let bin = element.slice(2);
+    // console.log(bin)
+    let str = '';
+
+    for(let i = 0; i < bin.length; i += 4) {  // O(n)
+      let b = bin.slice(i, i + 4);
+      
+      str += parseInt(b, 2).toString(16);
+    }
+
+    console.log(str)
+    return '0x' + str  // return hexadecimal
+
+  }
 };
 
 /******************************************************************************/

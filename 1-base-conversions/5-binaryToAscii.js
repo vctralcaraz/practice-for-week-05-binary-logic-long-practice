@@ -23,6 +23,27 @@ const binaryStringToArray = str => {
 
 const binaryToAscii = str => {
   // Your code here
+  const letters = binaryStringToArray(str);
+  let ascii = '';
+
+  for(let i = 0; i < letters.length; i++) {
+    let sum = 0;
+    let char = letters[i].split('').reverse().join('');
+
+    for(let j = 0; j < char.length; j++) {
+      let el = char[j];
+
+      if(el === '1') {
+        sum += (2 ** j);
+      }
+    }
+
+    ascii += String.fromCharCode(sum);
+
+  }
+  
+  return ascii;
+
 };
 
 /******************************************************************************/

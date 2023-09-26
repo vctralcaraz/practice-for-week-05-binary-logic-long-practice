@@ -4,6 +4,35 @@
 
 const convertToBase2 = element => {
   // Your code here
+  if(typeof element === 'number') {  // if decimal
+
+    let remainder;
+    let str = '';
+    let base;
+
+    while (element > 0) {  // O(n)
+      base = 2;  // set base number
+      remainder = element % base;  // get remainder
+      str += `${remainder}`;  // set string remainder to str
+
+      element = Math.floor(element / base);  // get new element by dividing by base without remainder
+    }
+
+    return '0b' + str.split('').reverse().join('');  // return binary number
+
+  } else if(element[1] === 'x') {  // if hexadecimal
+    
+    const reversed = element.split('').reverse().join('');  // split the element into an array, reversed
+    let str = '';
+
+    for(let i = 0; i < reversed.length - 2; i++) {  // O(n)
+      let el = reversed[i];
+
+      str += parseInt(el, 16).toString(2);  // convert each el to base 2 string
+    }
+
+    return '0b' + str;
+  }
 };
 
 /******************************************************************************/

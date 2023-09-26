@@ -4,6 +4,38 @@
 
 const convertToBase10 = str => {
   // Your code here
+  const base = str[1];  // get the base indicator
+  const reversed = str.split('').reverse().join('');  // split the str into an array, reverse it
+  let sum = 0;
+
+  // get base
+  if(base === 'b') {  // if binary
+    
+    for(let i = 0; i < reversed.length - 1; i++) {
+      let el = reversed[i];
+
+      if(el === '1') {
+        sum += (2 ** i);
+      }
+    }
+
+  } else if(base === 'x') {  // if hexadecimal
+
+    for(let i = 0; i < reversed.length - 1; i++) {
+      let el = reversed[i];
+
+      if(el >= '0' && el <= '9') {  // if the element is a number
+
+        sum += (16 ** i) * Number(el);
+      } else if(el >= 'a' && el <= 'f') {  // if the element is a letter
+        
+        sum += (16 ** i) * (el.charCodeAt(0) - 87);
+      }
+    }
+
+  }
+
+  return sum;
 };
 
 /******************************************************************************/
